@@ -54,7 +54,8 @@ class Login(MethodView):
 
     def get(self):
         self.form = LoginForm()
-        return render_template('login.html', form=self.form, user=g.user.username)
+        return render_template('login.html', form=self.form,
+                               user=g.user.username)
 
     def post(self):
         self.form = LoginForm(request.form)
