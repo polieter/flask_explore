@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+
+<nav>
+    <div class="container nav-wrapper">
+      <a href="{{ url_for('index') }}" class="brand-logo">Flask explore</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {% if user == "None": %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+          {% else: %}
+            <li><a href="{{ url_for('content') }}">Content</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          {% endif %}
+      </ul>
+    </div>
+</nav>
+
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
