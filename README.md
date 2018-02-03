@@ -6,13 +6,16 @@ Flask explore
 ### Setup for linux
 ```
 git clone https://github.com/polieter/flask_explore.git
-pip install -r requirements.txt
 cd /flask_explore
-mkdir instance
+pip install -r requirements.txt
+
 python database.py
+
+mkdir instance
 echo SQLALCHEMY_DATABASE_URI = 'sqlite:///<full path to data base>' >> instance/config.py
-SQLALCHEMY_TRACK_MODIFICATIONS = False >> instance/config.py
-DEBUG = True >> instance/config.py
-SECRET_KEY = '<-------this_is_a_secret_key_xD------->' >> instance/config.py
+echo SQLALCHEMY_TRACK_MODIFICATIONS = False >> instance/config.py
+echo DEBUG = True >> instance/config.py
+echo SECRET_KEY = '<-------this_is_a_secret_key_xD------->' >> instance/config.py
+
 python run.py
 ```
