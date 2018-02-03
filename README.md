@@ -18,4 +18,5 @@ echo DEBUG = True >> instance/config.py
 echo SECRET_KEY = '<-------this_is_a_secret_key_xD------->' >> instance/config.py
 
 python run.py
+
 ```
