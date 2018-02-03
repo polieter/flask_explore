@@ -33,7 +33,7 @@ def authenticated_user(func):
         if g.user is not None and g.user.is_authenticated:
             return func(*args, **kwargs)
         else:
-            return redirect(url_for('login', wantsurl=request.url))
+            return redirect(url_for('login'))
     return wraps_function
 
 
@@ -64,21 +64,14 @@ class Login(MethodView):
             login_user(self.user)
             session['logged_in'] = True
             flash('Logged in successfully.')
-            if request.args['wantsurl'].strip().endswith('login'):
-                return redirect(url_for('index'))
-            return redirect(request.args['wantsurl'])
+            return redirect(url_for('index'))
         else:
-            flash('Incorrect credential')
             return redirect(url_for('login'))
 
     def _correct_credential(self):
-        form_valid = self.form.validate_on_submit()
-        user_valid = self.user is not None
-        if user_valid:
-            pass_valid = self.user.check_password(self.form.password.data)
-        else:
-            pass_valid = False
-        return form_valid and user_valid and pass_valid
+        if self.user is not None and self.form.validate_on_submit():
+            return self.user.check_password(self.form.password.data)
+        return False
 
 
 class Logout(MethodView):
